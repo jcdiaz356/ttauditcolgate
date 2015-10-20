@@ -31,7 +31,9 @@ import com.dataservicios.ttauditcolgate.librerias.SessionManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Jaime Eduardo on 09/10/2015.
@@ -48,11 +50,11 @@ public class Facturacion extends Activity {
     private int pdv_id, rout_id, compay_id,auditory_id,user_id;
     private int invoice_id ;
     private double monto ;
-    private long  score = 0  ;
+    private int  score = 0  ;
     private String fechaRuta ;
 
     private RadioGroup rg_Tipo;
-    private RadioButton rb_A,rb_B,rb_C;
+    private RadioButton rb_A,rb_B,rb_C, rb_D;
 
 
 
@@ -69,6 +71,7 @@ public class Facturacion extends Activity {
         rb_A=(RadioButton) findViewById(R.id.rbA);
         rb_B=(RadioButton) findViewById(R.id.rbB);
         rb_C = (RadioButton) findViewById(R.id.rbC);
+        rb_D = (RadioButton) findViewById(R.id.rbD);
 
 
 
@@ -105,12 +108,15 @@ public class Facturacion extends Activity {
                 bt_photo.setVisibility(View.VISIBLE);
                 switch (checkedId) {
                     case R.id.rbA:
-                        invoice_id=1;
+                        invoice_id= 4;
                         break;
                     case R.id.rbB:
-                        invoice_id = 2 ;
+                        invoice_id= 1;
                         break;
                     case R.id.rbC:
+                        invoice_id = 2 ;
+                        break;
+                    case R.id.rbD:
                         invoice_id = 3 ;
                         break;
                 }
@@ -146,12 +152,16 @@ public class Facturacion extends Activity {
                         else{
                             if (id == rb_A.getId()){
                                 //Do something with the button
+                                monto = 0 ;
+                                score = 0;
+                            } else if (id == rb_B.getId()){
+                                //Do something with the button
                                 monto = 1000.00 ;
                                 score = 100;
-                            } else if(id == rb_B.getId()){
+                            } else if(id == rb_C.getId()){
                                 monto = 2000.00 ;
                                 score = 150;
-                            } else if(id == rb_C.getId()){
+                            } else if(id == rb_D.getId()){
                                 monto = 4000.00 ;
                                 score = 200;
                             }
@@ -159,10 +169,10 @@ public class Facturacion extends Activity {
                         }
 
                         Audit audit =new Audit();
-                        audit.setId(auditory_id);
-                        audit.setStore_id(pdv_id);
-                        audit.setScore(score);
-                        db.updateAudit(audit);
+
+                        db.updateAuditScore(auditory_id,score);
+                        List<Audit> audits1 = new ArrayList<Audit>();
+                        audits1=db.getAllAudits();
 
                         JSONObject paramsData;
                         paramsData = new JSONObject();

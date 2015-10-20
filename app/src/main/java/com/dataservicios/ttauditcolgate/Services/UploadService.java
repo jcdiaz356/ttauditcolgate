@@ -189,7 +189,6 @@ public class UploadService extends IntentService{
                 String foto = arg0[0].get(i);
                onInsert(foto);
 
-//
             }
             return true;
         }

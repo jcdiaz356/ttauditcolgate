@@ -59,7 +59,7 @@ public class PresenciaMaterial extends Activity{
     private List<PresencePublicity> presencePubli = new ArrayList<PresencePublicity>();
 
     private int pdv_id, rout_id, compay_id , idAuditoria,user_id , countProducts;
-    private long  score = 0  ;
+    private int  score = 0  ;
     private String fechaRuta ;
     private Button bt_guardar ;
 
@@ -168,7 +168,7 @@ public class PresenciaMaterial extends Activity{
                         long acumuladorPuntaje = 0;
 
                         JSONArray jsonArrayPublycity = new JSONArray();
-                        long ptCat38,ptCat39,ptCat40, ptCat41, ptCat42;
+                        int ptCat38,ptCat39,ptCat40, ptCat41, ptCat42;
                         ptCat38 = 0 ;
                         ptCat40 = 0;
                         ptCat41 = 0;
@@ -223,10 +223,12 @@ public class PresenciaMaterial extends Activity{
                         score = ptCat38 + ptCat39 + ptCat40 + ptCat41 + ptCat42;
 
                         Audit audit =new Audit();
-                        audit.setId(idAuditoria);
-                        audit.setStore_id(pdv_id);
-                        audit.setScore(score);
-                        db.updateAudit(audit);
+//                        audit.setId(idAuditoria);
+//                        audit.setStore_id(pdv_id);
+//                        audit.setScore(score);
+
+                        db.updateAuditScore(idAuditoria, score);
+                        //db.updateAudit(audit);
 
                         presencePubli.clear();
                         presencePubli = db.getAllPresencePublicityGroupCategory();

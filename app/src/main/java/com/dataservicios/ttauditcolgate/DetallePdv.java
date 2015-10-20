@@ -45,8 +45,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by usuario on 14/01/2015.
@@ -360,7 +362,7 @@ public class DetallePdv extends FragmentActivity {
                             idCompany =response.getInt("company");
                             if (success == 1) {
                                 JSONArray agentesObjJson;
-                                db.deleteAllAudits();
+                                //db.deleteAllAudits();
                                 agentesObjJson = response.getJSONArray("audits");
                                 // looping through All Products
                                 for (int i = 0; i < agentesObjJson.length(); i++) {
@@ -370,6 +372,8 @@ public class DetallePdv extends FragmentActivity {
                                     String auditoria = obj.getString("fullname");
 
                                     int totalAudit = db.getCountAuditForId(Integer.valueOf(idAuditoria));
+                                    List<Audit> audits1 = new ArrayList<Audit>();
+                                    audits1=db.getAllAudits();
                                     if(totalAudit==0) {
                                         Audit audit = new Audit();
                                         audit.setId(Integer.valueOf(idAuditoria));
@@ -378,6 +382,8 @@ public class DetallePdv extends FragmentActivity {
                                         audit.setScore(0);
                                         db.createAudit(audit);
                                     }
+
+                                    audits1=db.getAllAudits();
 
                                     int status = obj.getInt("state");
                                     bt = new Button(MyActivity);

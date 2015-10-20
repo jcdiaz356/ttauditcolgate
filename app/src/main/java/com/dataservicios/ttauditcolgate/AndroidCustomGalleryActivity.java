@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 
 import com.dataservicios.ttauditcolgate.Services.UploadService;
+import com.dataservicios.ttauditcolgate.adapter.ImageAdapter;
 import com.dataservicios.ttauditcolgate.librerias.GlobalConstant;
 
 //import org.apache.http.entity.mime.MultipartEntity;
@@ -81,7 +82,7 @@ public class AndroidCustomGalleryActivity extends Activity {
         getFromSdcard();
 
         final GridView imagegrid = (GridView) findViewById(R.id.PhoneImageGrid);
-        imageAdapter = new ImageAdapter();
+        imageAdapter = new ImageAdapter(MyActivity,f);
         imagegrid.setAdapter(imageAdapter);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.FROYO) {
@@ -168,7 +169,10 @@ public class AndroidCustomGalleryActivity extends Activity {
                         if (  listFile[i].getName().substring(0,6).equals(String.format("%06d", Integer.parseInt(store_id)) ))
                         {
                             if (imageAdapter.getItem(holder_counter).checkbox.isChecked())
+
                             {
+
+
                                 String name = listFile[i].getName();
                                 names_file.add(name);
                             }
@@ -321,7 +325,6 @@ public class AndroidCustomGalleryActivity extends Activity {
     }
 
 
-
     public void getFromSdcard()
     {
         Bundle bundle = getIntent().getExtras();
@@ -344,56 +347,6 @@ public class AndroidCustomGalleryActivity extends Activity {
         }
     }
 
-    public class ImageAdapter extends BaseAdapter {
-        private LayoutInflater mInflater;
-        ArrayList<ViewHolder> holders = new ArrayList<ViewHolder>();
-
-
-        public ImageAdapter() {
-            mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        public int getCount() {
-            return f.size();
-        }
-
-        public ViewHolder getItem(int position) {
-            return holders.get(position);
-        }
-
-        public long getItemId(int position) {
-            return position;
-        }
-
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            if (convertView == null) {
-                holder = new ViewHolder();
-                convertView = mInflater.inflate(R.layout.galleryitem, null);
-                holder.imageview = (ImageView) convertView.findViewById(R.id.thumbImage);
-                holder.checkbox = (CheckBox) convertView.findViewById(R.id.itemCheckBox);
-                convertView.setTag(holder);
-            }
-            else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 8;
-            Bitmap myBitmap = BitmapFactory.decodeFile(f.get(position), options);
-            Matrix matrix = new Matrix();
-            matrix.postRotate(90);
-            Bitmap myBitmap1 =  Bitmap.createBitmap(myBitmap, 0, 0, myBitmap.getWidth(), myBitmap.getHeight(), matrix, true);
-            holder.imageview.setImageBitmap(myBitmap1);
-            holders.add(holder);
-            return convertView;
-        }
-
-    }
-    class ViewHolder {
-        ImageView imageview;
-        CheckBox checkbox;
-    }
 
     public void onBackPressed() {
         super.onBackPressed();

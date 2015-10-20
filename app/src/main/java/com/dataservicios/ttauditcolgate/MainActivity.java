@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -39,12 +41,15 @@ public class MainActivity extends Activity {
 
 
     private ProgressBar mSpinner;
-    private TextView tvCargando ;
+    private TextView tvCargando, tv_Version ;
     private ConexionInternet cnInternet ;
     private Activity MyActivity;
     //private JSONParser jsonParser;
     // Database Helper
    private DatabaseHelper db;
+
+
+
 
 
     @Override
@@ -56,6 +61,18 @@ public class MainActivity extends Activity {
         mSpinner = (ProgressBar) findViewById(R.id.Splash_ProgressBar);
         mSpinner.setIndeterminate(true);
         tvCargando = (TextView) findViewById(R.id.tvCargando);
+        tv_Version = (TextView) findViewById(R.id.tvVersion);
+
+        PackageInfo pckInfo ;
+        try {
+            pckInfo= getPackageManager().getPackageInfo(getPackageName(),0);
+            tv_Version.setText(pckInfo.versionName);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
         cnInternet=new ConexionInternet(MyActivity);
         db = new DatabaseHelper(getApplicationContext());
         if (cnInternet.isOnline()){
@@ -102,6 +119,9 @@ public class MainActivity extends Activity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
+
+
+
     }
 
 

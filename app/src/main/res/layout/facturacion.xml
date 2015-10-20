@@ -48,15 +48,22 @@
                     android:padding="20dp"
 
                     android:layout_height="wrap_content"
-                    android:text="S/. 1000.00 +" />
+                    android:text="Sin Facturas" />
                 <RadioButton
                     android:id="@+id/rbB"
+                    android:layout_width="wrap_content"
+                    android:padding="20dp"
+
+                    android:layout_height="wrap_content"
+                    android:text="S/. 1000.00 +" />
+                <RadioButton
+                    android:id="@+id/rbC"
                     android:layout_width="wrap_content"
                     android:padding="20dp"
                     android:layout_height="wrap_content"
                     android:text="S/. 2000.00 + " />
                 <RadioButton
-                    android:id="@+id/rbC"
+                    android:id="@+id/rbD"
                     android:layout_width="wrap_content"
                     android:padding="20dp"
                     android:layout_height="wrap_content"
@@ -78,6 +85,88 @@
                 android:layout_below="@+id/widget110"
                 android:background="@android:color/transparent"
                 android:layout_gravity="center" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Ingresar Razón Social"
+
+                android:textSize="@dimen/general"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:inputType="number"
+
+                style="@style/TextLogin"
+
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+
+                android:id="@+id/etRazonSocial1"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:inputType="number"
+
+                style="@style/TextLogin"
+
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+
+                android:id="@+id/etRazonSocial2"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:inputType="number"
+
+                style="@style/TextLogin"
+
+                android:scrollHorizontally="false"
+                android:scrollbars="vertical"
+
+                android:id="@+id/etRazonSocial3"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"

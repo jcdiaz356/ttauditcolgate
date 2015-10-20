@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
     // Database Version
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 16;
     // Database Name
     private static final String DATABASE_NAME = "ttaudit-colgate";
     // Table Names
@@ -730,6 +730,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_AUDITS, values, KEY_ID + " = ?", new String[] { String.valueOf(audit.getId()) });
     }
 
+    public int updateAuditScore(int audit_id,int score) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_ID,  audit_id);
+        values.put(KEY_SCORE, score);
+
+
+        // updating row
+        return db.update(TABLE_AUDITS, values, KEY_ID + " = ?", new String[] { String.valueOf(audit_id) });
+    }
+
     /**
      * Delete all Audits
      */
@@ -773,7 +785,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
 
     public int getCountAuditForId(int id) {
-        String countQuery = "SELECT  * FROM " + TABLE_PRESENCE_PRODUCTS + " WHERE " +  KEY_ID  + " = " + id ;
+        String countQuery = "SELECT  * FROM " + TABLE_AUDITS + " WHERE " +  KEY_ID  + " = " + id ;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         int count = cursor.getCount();

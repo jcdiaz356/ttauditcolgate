@@ -15,6 +15,18 @@
         android:src="@drawable/fondo_agente"
         android:id="@+id/imageView" />
     <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Ver..."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#ffffffff"
+        android:textSize="@dimen/general"
+        android:layout_gravity="center_horizontal" />
+    <TextView
         android:id="@+id/tvCargando"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

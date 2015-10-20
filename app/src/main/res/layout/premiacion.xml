@@ -9,7 +9,6 @@
     tools:context=".MainActivity"
     android:background="@color/color_fondo"
     android:orientation="vertical">
-
     <TextView
 
         android:layout_width="wrap_content"
@@ -36,18 +35,33 @@
         android:textSize="50dp"
         android:layout_gravity="center_horizontal" />
     <TextView
-
+        android:id="@+id/tvAuditScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
-        android:text="En esta campaña"
+        android:text="*"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ffffffff"
-        android:textSize="45dp"
+        android:textSize="22dp"
         android:layout_gravity="center_horizontal" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:id="@+id/btRegistrar"
+            android:drawableTop="@drawable/ic_foto"
+            style="@style/ButtonCerrar"
+            android:enabled="true" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -58,11 +72,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CERRAR"
-            android:id="@+id/btCerrar"
+            android:text="GUARDAR"
+            android:id="@+id/btGuardar"
 
-            style="@style/ButtonCerrar"
-            android:enabled="true" />
+            style="@style/ButtonCerrar" />
 
     </LinearLayout>
 
